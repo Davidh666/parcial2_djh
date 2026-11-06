@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { EstadoEvento } from '../entities/evento-cultural.entity.js';
-import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength, Min } from 'class-validator';
+import { IsDateString, IsEnum, IsIn, IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength, Min } from 'class-validator';
 export class CreateEventoCulturalDto {
     @ApiProperty({ description: 'ID del recinto donde se realizará el evento', example: 1 })
     @IsInt({ message: 'El id_recinto debe ser un número entero' })
@@ -44,4 +44,10 @@ export class CreateEventoCulturalDto {
     @IsEnum(EstadoEvento, { message: 'El estado debe ser: Programado, Agotado o Cancelado' })
     @IsNotEmpty({ message: 'El estado es obligatorio' })
     estado: EstadoEvento;
+
+
+    @IsString()
+    @IsNotEmpty()
+    @IsIn(['concierto', 'teatro', 'danza', 'festival'])
+    categoria_eventos: string;
 }

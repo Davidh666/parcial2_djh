@@ -6,14 +6,15 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // Elimina propiedades que no estén en el DTO
-      forbidNonWhitelisted: true, // Lanza error si envían propiedades extrañas
+      whitelist: true, 
+      forbidNonWhitelisted: true, 
     }),
   );
 
-  // 2. Configuración de Swagger
   const config = new DocumentBuilder()
     .setTitle('API de Eventos Culturales y Recintos')
     .setDescription('Documentación oficial para el examen parcial de Sistemas')

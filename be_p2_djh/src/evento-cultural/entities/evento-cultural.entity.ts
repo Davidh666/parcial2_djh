@@ -51,6 +51,9 @@ export class EventoCultural {
   @JoinColumn({ name: 'id_recinto' })
   recinto: Recinto;
 
+  @Column({ type: 'varchar', length: 50, default: 'concierto' })
+  categoria_eventos: string;
+
   @CreateDateColumn({ type: 'timestamp' })
   fecha_creacion: Date;
 
